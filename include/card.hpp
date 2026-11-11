@@ -1,6 +1,6 @@
 #pragma once
 
-#include <cstdint>
+#include <cstdint> //fixed-width integer types
 #include <optional>
 #include <string>
 #include <string_view>

@@ -4,8 +4,8 @@
 **M1 — Card representation + Hold'em 7-card hand evaluator (with tests)**
 
 ## Milestone 1 tasks
-- [ ] T0  Project skeleton: move `main.cpp` → `src/`, get `cmake` building with g++ (MSYS2)
-- [ ] T1  Card encoding (`rank*4 + suit`), parse/print `"Ah"` ↔ int, plus tests
+- [x] T0  Project skeleton: `src/` + `include/`, `poker_engine` library + `equity` exe, cmake/ninja building with g++ (MSYS2)
+- [~] T1  Card encoding (`rank*4 + suit`), parse/print `"Ah"` ↔ int — code done, **tests pending (via T3)**
 - [ ] T2  Hand/board as `uint64_t` bitmask; add/remove/contains/count cards
 - [ ] T3  Add a test framework (Catch2 or GoogleTest) via CMake; first tests pass
 - [ ] T4  Design the hand-value type: category + tiebreak packed into one comparable integer
@@ -23,11 +23,15 @@
 7. Optional: range-vs-range, GUI/web
 
 ## Open bugs / issues
-- `CMakeLists.txt` builds `src/main.cpp`, but `main.cpp` is at the repo root → build fails.
-- `cmake` is not on PATH (g++ 15.2 from MSYS2 ucrt64 is). Install with `pacman -S mingw-w64-ucrt-x86_64-cmake mingw-w64-ucrt-x86_64-ninja`.
+_(none)_
 
 ## Concepts learned
-_(nothing yet)_
+- Header (`include/`) vs implementation (`src/`); `constexpr` helpers live in headers
+- CMake library + executable split, `PUBLIC` include dirs, Release already implies -O3
+- Card encoding rank*4+suit; `>> 2` / `& 3` for rank/suit; `CardMask{1} << c` (64-bit shift)
+- `std::optional` for fallible parsing; `unsigned char` cast before `toupper`
+- `uint8_t` prints as a char with `std::cout`
 
 ## Session log
-- 2026-11-11: Set up tutor mode, created PROGRESS.md, planned M1.
+- 2026-11-11: Planned M1. T0 done, card.hpp/card.cpp written, builds clean, pushed (3b90862).
+- 2026-11-12: Next: T3 test framework + card tests.
